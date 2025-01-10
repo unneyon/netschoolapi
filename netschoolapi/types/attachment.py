@@ -12,5 +12,25 @@
 # You CANNOT edit this file without direct permission from the author.
 # You can redistribute this file without any changes.
 
-from .client import NetSchoolAPI
-from . import errors, types
+import dataclasses
+import datetime
+import typing
+
+import marshmallow
+import marshmallow_dataclass
+
+from ._base import BaseSchema
+
+
+@dataclasses.dataclass
+class AttachmentSchema(BaseSchema):
+    id: int
+    name: str = dataclasses.field(metadata=dict(
+        data_key='originalFileName', allow_none=True, missing='', required=False
+    ))
+    description: str = dataclasses.field(metadata=dict(
+        allow_none=True, missing='', required=False
+    ))
+
+
+Attachment = marshmallow_dataclass.class_schema(AttachmentSchema)

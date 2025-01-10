@@ -12,5 +12,21 @@
 # You CANNOT edit this file without direct permission from the author.
 # You can redistribute this file without any changes.
 
-from .client import NetSchoolAPI
-from . import errors, types
+import dataclasses
+import datetime
+import typing
+
+import marshmallow
+import marshmallow_dataclass
+
+from ._base import BaseSchema
+from .lesson import LessonSchema
+
+
+@dataclasses.dataclass
+class DaySchema(BaseSchema):
+    lessons: typing.List[LessonSchema]  # type: ignore
+    day: datetime.date = dataclasses.field(metadata={"data_key": "date"})
+
+
+Day = marshmallow_dataclass.class_schema(DaySchema)

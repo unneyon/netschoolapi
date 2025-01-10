@@ -12,5 +12,22 @@
 # You CANNOT edit this file without direct permission from the author.
 # You can redistribute this file without any changes.
 
-from .client import NetSchoolAPI
-from . import errors, types
+import dataclasses
+import datetime
+import typing
+
+import marshmallow
+import marshmallow_dataclass
+
+from ._base import BaseSchema
+from .day import DaySchema
+
+
+@dataclasses.dataclass
+class DiarySchema(BaseSchema):
+    start: datetime.date = dataclasses.field(metadata={"data_key": "weekStart"})
+    end: datetime.date = dataclasses.field(metadata={"data_key": "weekEnd"})
+    schedule: typing.List[DaySchema] = dataclasses.field(metadata={"data_key": "weekDays"})  # type: ignore
+
+
+Diary = marshmallow_dataclass.class_schema(DiarySchema)

@@ -12,5 +12,14 @@
 # You CANNOT edit this file without direct permission from the author.
 # You can redistribute this file without any changes.
 
-from .client import NetSchoolAPI
-from . import errors, types
+from netschoolapi.types._base import BaseSchema
+from netschoolapi.types.announcement import *
+from netschoolapi.types.assignment import *
+from netschoolapi.types.attachment import *
+from netschoolapi.types.author import *
+from netschoolapi.types.day import *
+from netschoolapi.types.diary import *
+from netschoolapi.types.lesson import *
+from netschoolapi.types.mail import *
+from netschoolapi.types.school import *
+from netschoolapi.types.student import *

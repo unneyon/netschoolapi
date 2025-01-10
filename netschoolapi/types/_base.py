@@ -12,5 +12,13 @@
 # You CANNOT edit this file without direct permission from the author.
 # You can redistribute this file without any changes.
 
-from .client import NetSchoolAPI
-from . import errors, types
+import dataclasses
+
+import marshmallow
+
+
+@dataclasses.dataclass
+class BaseSchema(marshmallow.Schema):
+    class Meta:
+        dateformat = '%Y-%m-%dT00:00:00'
+        unknown = marshmallow.EXCLUDE

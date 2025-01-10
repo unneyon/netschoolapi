@@ -8,9 +8,6 @@ NetSchoolAPI — это форк библиотеки [netschoolapi](https://gi
 pip3 install git+https://github.com/unneyon/netschoolapi
 ```
 
-## Жалобы и предложения
-Если вы хотите сообщить о баге или предложить фичу — создайте [issue](https://github.com/unneyon/netschoolapi/issues/).
-
 ## Лицензия
 Код библиотеки распространяется под лицензией [CC BY NC ND](LICENSE).
 Это значит, что вы можете только распространять Программное обеспечение на НЕкоммерческой основе, без изменения кода и с указанием авторства.

@@ -19,14 +19,14 @@ import typing
 import marshmallow
 import marshmallow_dataclass
 
-from ._base import BaseSchema
+from ._base import BaseSchema, UnionField
 from .attachment import AttachmentSchema
 
 
 @dataclasses.dataclass
 class MessageMinSchema(BaseSchema):
-    id: typing.Union[str, int] = dataclasses.field(metadata=dict(
-        allow_none=True, required=False
+    id: typing.Any = dataclasses.field(metadata=dict(
+        marshmallow_field=UnionField(str, int, allow_none=True, required=False)
     ))
     date: datetime.datetime = dataclasses.field(metadata=dict(
         data_key="sent", allow_none=True, required=False
@@ -60,8 +60,8 @@ class MessagesSchema(BaseSchema):
 
 @dataclasses.dataclass
 class MessageAuthorSchema(BaseSchema):
-    id: typing.Union[str, int] = dataclasses.field(metadata=dict(
-        allow_none=True, required=False
+    id: typing.Any = dataclasses.field(metadata=dict(
+        marshmallow_field=UnionField(str, int, allow_none=True, required=False)
     ))
     name: str = dataclasses.field(metadata=dict(
         allow_none=True, required=False

@@ -25,7 +25,7 @@ from .attachment import AttachmentSchema
 
 @dataclasses.dataclass
 class MessageMinSchema(BaseSchema):
-    id: int | str = dataclasses.field(metadata=dict(
+    id: typing.Union[str, int] = dataclasses.field(metadata=dict(
         allow_none=True, required=False
     ))
     date: datetime.datetime = dataclasses.field(metadata=dict(
@@ -60,7 +60,7 @@ class MessagesSchema(BaseSchema):
 
 @dataclasses.dataclass
 class MessageAuthorSchema(BaseSchema):
-    id: int | str = dataclasses.field(metadata=dict(
+    id: typing.Union[str, int] = dataclasses.field(metadata=dict(
         allow_none=True, required=False
     ))
     name: str = dataclasses.field(metadata=dict(

@@ -24,9 +24,15 @@ from ._base import BaseSchema
 
 @dataclasses.dataclass
 class AuthorSchema(BaseSchema):
-    id: int
-    full_name: str = dataclasses.field(metadata=dict(data_key="fio"))
-    nickname: str = dataclasses.field(metadata=dict(data_key="nickName"))
+    id: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    full_name: str = dataclasses.field(metadata=dict(
+        data_key="fio", allow_none=True, required=False
+    ))
+    nickname: str = dataclasses.field(metadata=dict(
+        data_key="nickName", allow_none=True, required=False
+    ))
 
 
 Author = marshmallow_dataclass.class_schema(AuthorSchema)

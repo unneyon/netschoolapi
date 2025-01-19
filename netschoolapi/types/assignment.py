@@ -24,13 +24,27 @@ from ._base import BaseSchema
 
 @dataclasses.dataclass
 class AssignmentSchema(BaseSchema):
-    id: int
-    comment: str
-    type: str
-    content: str = dataclasses.field(metadata={"data_key": "assignmentName"})
-    mark: typing.Optional[int] = dataclasses.field(metadata={"allow_none": True, "data_key": "mark"})
-    is_duty: bool = dataclasses.field(metadata={"data_key": "dutyMark"})
-    deadline: datetime.date = dataclasses.field(metadata={"data_key": "dueDate"})
+    id: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    comment: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    type: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    content: str = dataclasses.field(metadata=dict(
+        data_key="assignmentName", allow_none=True, required=False
+    ))
+    mark: typing.Optional[int] = dataclasses.field(metadata=dict(
+        data_key="mark", allow_none=True, required=False
+    ))
+    is_duty: bool = dataclasses.field(metadata=dict(
+        data_key="dutyMark", allow_none=True, required=False
+    ))
+    deadline: datetime.date = dataclasses.field(metadata=dict(
+        data_key="dueDate", allow_none=True, required=False
+    ))
 
     @marshmallow.pre_load
     def unwrap_marks(self, assignment: typing.Dict[str, typing.Any], **_) -> typing.Dict[str, typing.Any]:

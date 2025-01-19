@@ -26,12 +26,24 @@ from .author import AuthorSchema
 
 @dataclasses.dataclass
 class AnnouncementSchema(BaseSchema):
-    id: int
-    name: str
-    author: AuthorSchema
-    content: str = dataclasses.field(metadata=dict(data_key='description'))
-    post_date: datetime.datetime = dataclasses.field(metadata=dict(data_key='postDate'))
-    attachments: typing.List[AttachmentSchema] = dataclasses.field(default_factory=list)
+    id: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    name: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    author: AuthorSchema = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    content: str = dataclasses.field(metadata=dict(
+        data_key='description', allow_none=True, required=False
+    ))
+    post_date: datetime.datetime = dataclasses.field(metadata=dict(
+        data_key='postDate', allow_none=True, required=False
+    ))
+    attachments: typing.List[AttachmentSchema] = dataclasses.field(default_factory=list, metadata=dict(
+        allow_none=True, required=False
+    ))
 
 
 Announcement = marshmallow_dataclass.class_schema(AnnouncementSchema)

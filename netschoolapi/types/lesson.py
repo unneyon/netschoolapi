@@ -26,18 +26,36 @@ from .assignment import AssignmentSchema
 @dataclasses.dataclass
 class LessonSchema(BaseSchema):
     day: datetime.date
-    start: datetime.time = dataclasses.field(metadata={"data_key": "startTime"})
-    end: datetime.time = dataclasses.field(metadata={"data_key": "endTime"})
-    room: typing.Optional[str] = dataclasses.field(
-        metadata={"missing": "", "allow_none": True, "required": False}
-    )
-    number: int
-    subject: str = dataclasses.field(metadata={"data_key": "subjectName"})
-    is_distance_lesson: bool = dataclasses.field(metadata={"data_key": "isDistanceLesson"})
-    is_ea_lesson: bool = dataclasses.field(metadata={"data_key": "isEaLesson"})
-    class_meeting_id: int = dataclasses.field(metadata={"data_key": "classmeetingId"})
-    relay: int = dataclasses.field(metadata={"data_key": "relay"})
-    assignments: typing.List[AssignmentSchema] = dataclasses.field(default_factory=list)  # type: ignore
+    start: datetime.time = dataclasses.field(metadata=dict(
+        data_key="startTime", allow_none=True, required=False
+    ))
+    end: datetime.time = dataclasses.field(metadata=dict(
+        data_key="endTime", allow_none=True, required=False
+    ))
+    room: typing.Optional[str] = dataclasses.field(metadata=dict(
+        missing="", allow_none=True, required=False
+    ))
+    number: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    subject: str = dataclasses.field(metadata=dict(
+        data_key="subjectName", allow_none=True, required=False
+    ))
+    is_distance_lesson: bool = dataclasses.field(metadata=dict(
+        data_key="isDistanceLesson", allow_none=True, required=False
+    ))
+    is_ea_lesson: bool = dataclasses.field(metadata=dict(
+        data_key="isEaLesson", allow_none=True, required=False
+    ))
+    class_meeting_id: int = dataclasses.field(metadata=dict(
+        data_key="classmeetingId", allow_none=True, required=False
+    ))
+    relay: int = dataclasses.field(metadata=dict(
+        data_key="relay", allow_none=True, required=False
+    ))
+    assignments: typing.List[AssignmentSchema] = dataclasses.field(default_factory=list, metadata=dict(
+        data_key="classmeetingId", allow_none=True, required=False
+    ))  # type: ignore
 
 
 Lesson = marshmallow_dataclass.class_schema(LessonSchema)

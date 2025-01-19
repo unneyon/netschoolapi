@@ -25,8 +25,12 @@ from .lesson import LessonSchema
 
 @dataclasses.dataclass
 class DaySchema(BaseSchema):
-    lessons: typing.List[LessonSchema]  # type: ignore
-    day: datetime.date = dataclasses.field(metadata={"data_key": "date"})
+    lessons: typing.List[LessonSchema] = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    )) # type: ignore
+    day: datetime.date = dataclasses.field(metadata=dict(
+        data_key="date", allow_none=True, required=False
+    ))
 
 
 Day = marshmallow_dataclass.class_schema(DaySchema)

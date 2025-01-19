@@ -25,9 +25,15 @@ from .day import DaySchema
 
 @dataclasses.dataclass
 class DiarySchema(BaseSchema):
-    start: datetime.date = dataclasses.field(metadata={"data_key": "weekStart"})
-    end: datetime.date = dataclasses.field(metadata={"data_key": "weekEnd"})
-    schedule: typing.List[DaySchema] = dataclasses.field(metadata={"data_key": "weekDays"})  # type: ignore
+    start: datetime.date = dataclasses.field(metadata=dict(
+        data_key="weekStart", allow_none=True, required=False
+    ))
+    end: datetime.date = dataclasses.field(metadata=dict(
+        data_key="weekEnd", allow_none=True, required=False
+    ))
+    schedule: typing.List[DaySchema] = dataclasses.field(metadata=dict(
+        data_key="weekDays", allow_none=True, required=False
+    ))  # type: ignore
 
 
 Diary = marshmallow_dataclass.class_schema(DiarySchema)

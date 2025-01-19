@@ -24,32 +24,58 @@ from ._base import BaseSchema
 
 @dataclasses.dataclass
 class ShortSchoolSchema(BaseSchema):
-    name: str
-    id: int
-    address: str = dataclasses.field(metadata=dict(data_key="addressString"))
+    name: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    id: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    address: str = dataclasses.field(metadata=dict(
+        data_key="addressString", allow_none=True, required=False
+    ))
 
 
 @dataclasses.dataclass
 class SchoolSchema(BaseSchema):
-    name: str = dataclasses.field(metadata=dict(data_key='fullSchoolName3'))
-    about: str
+    name: str = dataclasses.field(metadata=dict(
+        data_key="fullSchoolName3", allow_none=True, required=False
+    ))
+    about: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
 
-    address: str
-    email: str
-    site: str = dataclasses.field(metadata=dict(data_key='web'))
-    phone: str = dataclasses.field(metadata=dict(data_key='phones'))
+    address: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    email: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    site: str = dataclasses.field(metadata=dict(
+        data_key="web", allow_none=True, required=False
+    ))
+    phone: str = dataclasses.field(metadata=dict(
+        data_key="phones", allow_none=True, required=False
+    ))
 
-    director: str
-    AHC: str = dataclasses.field(metadata=dict(data_key='principalAHC'))
-    IT: str = dataclasses.field(metadata=dict(data_key='principalIT'))
-    UVR: str = dataclasses.field(metadata=dict(data_key='principalUVR'))
+    director: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    AHC: str = dataclasses.field(metadata=dict(
+        data_key="principalAHC", allow_none=True, required=False
+    ))
+    IT: str = dataclasses.field(metadata=dict(
+        data_key="principalIT", allow_none=True, required=False
+    ))
+    UVR: str = dataclasses.field(metadata=dict(
+        data_key="principalUVR", allow_none=True, required=False
+    ))
 
     @marshmallow.pre_load
     def unwrap_nested_dicts(
             self, school: typing.Dict[str, typing.Any], **_) -> typing.Dict[str, str]:
-        school.update(school.pop('commonInfo'))
-        school.update(school.pop('contactInfo'))
-        school.update(school.pop('managementInfo'))
+        school.update(school.pop("commonInfo"))
+        school.update(school.pop("contactInfo"))
+        school.update(school.pop("managementInfo"))
         school['address'] = school['juridicalAddress'] or school['postAddress']
         return school
 

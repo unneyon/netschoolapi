@@ -24,33 +24,79 @@ from ._base import BaseSchema
 
 @dataclasses.dataclass
 class StudentSettingsSchema(BaseSchema):
-    show_mobile_phone: bool = dataclasses.field(metadata=dict(data_key='showMobilePhone'))
-    default_desktop: int = dataclasses.field(metadata=dict(data_key='defaultDesktop', allow_none=True))
-    language: str
-    favorite_reports: list = dataclasses.field(metadata=dict(data_key='favoriteReports'))
-    password_expired: int = dataclasses.field(metadata=dict(data_key='passwordExpired'))
-    recovery_answer: str = dataclasses.field(metadata=dict(data_key='recoveryAnswer'))
-    recovery_question: str = dataclasses.field(metadata=dict(data_key='recoveryQuestion'))
-    theme: int
-    user_id: int = dataclasses.field(metadata=dict(data_key='userId'))
-    show_netschool_app: bool = dataclasses.field(metadata=dict(data_key='showNetSchoolApp'))
-    show_sferum_banner: bool = dataclasses.field(metadata=dict(data_key='showSferumBanner'))
+    show_mobile_phone: bool = dataclasses.field(metadata=dict(
+        data_key="showMobilePhone", allow_none=True, required=False
+    ))
+    default_desktop: int = dataclasses.field(metadata=dict(
+        data_key="defaultDesktop", allow_none=True, required=False
+    ))
+    language: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    favorite_reports: list = dataclasses.field(metadata=dict(
+        data_key="favoriteReports", allow_none=True, required=False
+    ))
+    password_expired: int = dataclasses.field(metadata=dict(
+        data_key="passwordExpired", allow_none=True, required=False
+    ))
+    recovery_answer: str = dataclasses.field(metadata=dict(
+        data_key="recoveryAnswer", allow_none=True, required=False
+    ))
+    recovery_question: str = dataclasses.field(metadata=dict(
+        data_key="recoveryQuestion", allow_none=True, required=False
+    ))
+    theme: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    user_id: int = dataclasses.field(metadata=dict(
+        data_key="userId", allow_none=True, required=False
+    ))
+    show_netschool_app: bool = dataclasses.field(metadata=dict(
+        data_key="showNetSchoolApp", allow_none=True, required=False
+    ))
+    show_sferum_banner: bool = dataclasses.field(metadata=dict(
+        data_key="showSferumBanner", allow_none=True, required=False
+    ))
 
 
 @dataclasses.dataclass
 class StudentSchema(BaseSchema):
-    user_id: int = dataclasses.field(metadata=dict(data_key='userId'))
-    first_name: str = dataclasses.field(metadata=dict(data_key='firstName'))
-    last_name: str = dataclasses.field(metadata=dict(data_key='lastName'))
-    middle_name: str = dataclasses.field(metadata=dict(data_key='middleName'))
-    login: str = dataclasses.field(metadata=dict(data_key='loginName'))
-    birthdate: datetime.date = dataclasses.field(metadata=dict(data_key='birthDate'))
-    roles: list
-    school_year_id: int = dataclasses.field(metadata=dict(data_key='schoolyearId'))
-    mobile_phone: str = dataclasses.field(metadata=dict(data_key='mobilePhone'))
-    email: str = dataclasses.field(metadata=dict(data_key='email'))
-    exists_photo: bool = dataclasses.field(metadata=dict(data_key='existsPhoto'))
-    user_settings: StudentSettingsSchema = dataclasses.field(metadata=dict(data_key='userSettings'))
+    user_id: int = dataclasses.field(metadata=dict(
+        data_key="userId", allow_none=True, required=False
+    ))
+    first_name: str = dataclasses.field(metadata=dict(
+        data_key="firstName", allow_none=True, required=False
+    ))
+    last_name: str = dataclasses.field(metadata=dict(
+        data_key="lastName", allow_none=True, required=False
+    ))
+    middle_name: str = dataclasses.field(metadata=dict(
+        data_key="middleName", allow_none=True, required=False
+    ))
+    login: str = dataclasses.field(metadata=dict(
+        data_key="loginName", allow_none=True, required=False
+    ))
+    birthdate: datetime.date = dataclasses.field(metadata=dict(
+        data_key="birthDate", allow_none=True, required=False
+    ))
+    roles: list = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    school_year_id: int = dataclasses.field(metadata=dict(
+        data_key="schoolyearId", allow_none=True, required=False
+    ))
+    mobile_phone: str = dataclasses.field(metadata=dict(
+        data_key="mobilePhone", allow_none=True, required=False
+    ))
+    email: str = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
+    exists_photo: bool = dataclasses.field(metadata=dict(
+        data_key="existsPhoto", allow_none=True, required=False
+    ))
+    user_settings: StudentSettingsSchema = dataclasses.field(metadata=dict(
+        data_key="userSettings", allow_none=True, required=False
+    ))
 
 
 Student = marshmallow_dataclass.class_schema(StudentSchema)

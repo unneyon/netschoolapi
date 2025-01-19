@@ -24,7 +24,9 @@ from ._base import BaseSchema
 
 @dataclasses.dataclass
 class AttachmentSchema(BaseSchema):
-    id: int
+    id: int = dataclasses.field(metadata=dict(
+        allow_none=True, required=False
+    ))
     name: str = dataclasses.field(metadata=dict(
         data_key='originalFileName', allow_none=True, missing='', required=False
     ))

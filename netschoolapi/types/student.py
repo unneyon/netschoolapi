@@ -25,7 +25,7 @@ from ._base import BaseSchema
 @dataclasses.dataclass
 class StudentSettingsSchema(BaseSchema):
     show_mobile_phone: bool = dataclasses.field(metadata=dict(data_key='showMobilePhone'))
-    default_desktop: int = dataclasses.field(metadata=dict(data_key='defaultDesktop'))
+    default_desktop: int = dataclasses.field(metadata=dict(data_key='defaultDesktop', allow_none=True))
     language: str
     favorite_reports: list = dataclasses.field(metadata=dict(data_key='favoriteReports'))
     password_expired: int = dataclasses.field(metadata=dict(data_key='passwordExpired'))

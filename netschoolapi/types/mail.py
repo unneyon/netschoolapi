@@ -25,7 +25,7 @@ from .attachment import AttachmentSchema
 
 @dataclasses.dataclass
 class MessageMinSchema(BaseSchema):
-    id: marshmallow = dataclasses.field(metadata=dict(
+    id: int | str = dataclasses.field(metadata=dict(
         allow_none=True, required=False
     ))
     date: datetime.datetime = dataclasses.field(metadata=dict(

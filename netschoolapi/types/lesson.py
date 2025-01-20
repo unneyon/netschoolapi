@@ -54,7 +54,7 @@ class LessonSchema(BaseSchema):
         data_key="relay", allow_none=True, required=False
     ))
     assignments: typing.List[AssignmentSchema] = dataclasses.field(default_factory=list, metadata=dict(
-        data_key="classmeetingId", allow_none=True, required=False
+        allow_none=True, required=False
     ))  # type: ignore
 
 

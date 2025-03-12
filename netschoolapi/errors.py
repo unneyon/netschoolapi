@@ -17,11 +17,13 @@ class NetSchoolAPIError(Exception):
 
 
 class AuthError(NetSchoolAPIError):
-    pass
+    def __init__(self, resp = None):
+        self.resp = resp
 
 
 class SchoolNotFoundError(NetSchoolAPIError):
-    pass
+    def __init__(self, resp = None):
+        self.resp = resp
 
 
 class NoResponseFromServer(NetSchoolAPIError):

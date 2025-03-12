@@ -24,5 +24,5 @@ setup(
     ],
     license="MIT",
     install_requires=open("requirements.txt").read().strip().split("\n"),
-    python_requires=">=3.8",
+    python_requires=">=3.10",
 )

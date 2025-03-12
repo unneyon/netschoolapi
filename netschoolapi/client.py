@@ -22,7 +22,7 @@ import httpx
 from httpx import AsyncClient, Response
 
 from .errors import (
-    NetSchoolAPIError, AuthError, SchoolNotFoundError, NoResponseFromServer
+    AuthError, SchoolNotFoundError
 )
 from . import types
 
@@ -176,15 +176,17 @@ class NetSchoolAPI:
                 else:
                     if 'message' in response_json:
                         raise AuthError(
-                            http_status_error.response.json()['message']
+                            http_status_error.response.json()['message'], http_status_error.response.json()
                         )
-                raise AuthError()
+                raise AuthError(
+                    resp=http_status_error.response.json()
+                )
             else:
                 raise http_status_error
         auth_result = response.json()
 
         if 'at' not in auth_result:
-            raise AuthError(auth_result['message'])
+            raise AuthError(auth_result['message'], auth_result)
 
         self._access_token = auth_result["at"]
         self._wrapped_client.client.headers['at'] = auth_result['at']

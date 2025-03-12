@@ -25,7 +25,6 @@ DEFAULT_REQUESTS_TIMEOUT = 5
 
 
 class Requester(Protocol):
-
     def __call__(self, request: httpx.Request, follow_redirects=False) -> Awaitable:  # type: ignore
         pass
 
@@ -58,7 +57,7 @@ class AsyncClientWrapper:
                     request, follow_redirects
                 ), requests_timeout)
         except asyncio.TimeoutError:
-            raise errors.NoResponseFromServer from None
+            raise errors.NoResponseFromServer("Timeout error") from None
 
     async def _infinite_request(self, request: httpx.Request, follow_redirects: bool):
         while True:
